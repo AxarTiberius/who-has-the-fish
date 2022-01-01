@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loader.start()
 
-  request.get(`${serverUrl}/v1/info`)
+  request.get(`${serverUrl}/info`)
     .end((err, res) => {
       if (err || !res.ok) {
         console.error(err.response.error)
