@@ -27,7 +27,5 @@ debug.log
 !bridges/python/.venv/.gitkeep
 !**/*.sample*
 packages/**/config/config.json
-packages/**/data/db/*.json
-data/model.nlp
 package.json.backup
 .python-version
