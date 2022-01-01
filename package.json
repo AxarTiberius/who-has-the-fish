@@ -9,7 +9,7 @@
     "build": "npm run build:app",
     "build:app": "cross-env WHTF_NODE_ENV=production vite --config app/vite.config.js build",
     "start": "cross-env WHTF_NODE_ENV=production node server.js",
-    "train": "node scripts/run-train.js"
+    "train": "node scripts/train.js"
   },
   "author": "",
   "license": "MIT",
