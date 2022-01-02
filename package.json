@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev:app": "vite --host --config app/vite.config.js",
-    "dev:server": "cross-env WHTF_NODE_ENV=development node server.js",
+    "dev:server": "cross-env WHTF_NODE_ENV=development npm run train && cross-env WHTF_NODE_ENV=development node server.js",
     "build": "npm run build:app",
     "build:app": "cross-env WHTF_NODE_ENV=production vite --config app/vite.config.js build",
     "start": "cross-env WHTF_NODE_ENV=production node server.js",

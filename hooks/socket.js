@@ -43,6 +43,9 @@ module.exports = function container (get, set) {
 
           ;(async () => {
             const response = await nlp.process('en', data.value);
+            if (response.intent === 'None') {
+              response.answer = 'Sorry, I could not understand that. Try asking about the riddle.'
+            }
             socket.emit('answer', response.answer)
             synthesizer.speakTextAsync(
               response.answer,
