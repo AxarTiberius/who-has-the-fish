@@ -34,40 +34,43 @@ module.exports = function container (get, set) {
         //log.info(`Type: ${data}`)
         //log.info(`Socket id: ${socket.id}`)
 
+        function sayAnswer (answer, noSpeak) {
+          var synthesizer = new speech.SpeechSynthesizer(speechConfig);
+          socket.emit('answer', answer)
+          if (noSpeak) return;
+          socket.emit('is-typing', true)
+          synthesizer.speakTextAsync(
+            answer,
+            function (result) {
+              if (result) {
+                synthesizer.close()
+                var audioData = result.audioData
+                socket.emit('audio-forwarded', {buffer: Buffer.from(audioData)})
+              }
+              socket.emit('is-typing', false)
+            },
+            function (error) {
+              console.log(error);
+              socket.emit('is-typing', false)
+              synthesizer.close();
+            }
+          );
+        }
+
+        ;(async () => {
+          const response = await nlp.process('en', 'riddle');
+          sayAnswer(response.answer, true)
+        })();
+
         // Listen for new query
         socket.on('query', function (data) {
-          //log.title('Socket')
-          //log.info(`${data.client} emitted: ${data.value}`)
-          var synthesizer = new speech.SpeechSynthesizer(speechConfig);
-          socket.emit('is-typing', true)
-
           ;(async () => {
             const response = await nlp.process('en', data.value);
             if (response.intent === 'None') {
               response.answer = 'Sorry, I could not understand that. Try asking about the riddle.'
             }
-            socket.emit('answer', response.answer)
-            synthesizer.speakTextAsync(
-              response.answer,
-              function (result) {
-                if (result) {
-                  synthesizer.close()
-                  var audioData = result.audioData
-                  socket.emit('audio-forwarded', {buffer: Buffer.from(audioData)})
-                }
-                socket.emit('is-typing', false)
-              },
-              function (error) {
-                console.log(error);
-                socket.emit('is-typing', false)
-                synthesizer.close();
-              }
-            );
+            sayAnswer(response.answer)
           })();
-
-          
-
-          //log.info(`value: ${data.value}`)
         })
       })
     })

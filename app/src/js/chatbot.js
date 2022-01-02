@@ -107,7 +107,7 @@ export default class Chatbot {
     }
 
     this.parsedBubbles.push({ who, string })
-    localStorage.setItem('bubbles', JSON.stringify(this.parsedBubbles))
+    //localStorage.setItem('bubbles', JSON.stringify(this.parsedBubbles))
     this.scrollDown()
   }
 }
