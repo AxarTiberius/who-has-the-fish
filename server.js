@@ -2,6 +2,11 @@ var motley = require('motley')
 var dotenv = require('dotenv')
 dotenv.config()
 
+// provided override port
+if (process.env.PORT) {
+  process.env.WHTF_PORT = process.env.PORT
+}
+
 try {
   var app = motley({
     _ns: 'motley',

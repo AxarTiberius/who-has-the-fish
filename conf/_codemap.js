@@ -4,7 +4,7 @@ module.exports = {
   _folder: 'conf',
 
   // site overrides
-  '@site.port': 1339,
+  '@site.port': process.env.WHTF_PORT,
   '@site.title': 'Who has the fish?',
 
   'middleware.buffet{}': {
