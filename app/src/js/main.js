@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   request.get(`${serverUrl}/info`)
     .end((err, res) => {
       if (err || !res.ok) {
-        console.error(err.response.error)
+        console.error(err)
       } else {
         const input = document.querySelector('#query')
         const mic = document.querySelector('button')
