@@ -72,6 +72,14 @@ module.exports = function container (get, set) {
             sayAnswer(response.answer)
           })();
         })
+
+        socket.on('recognize', function (data) {
+          var recognizer = new speech.SpeechRecognizer(speechConfig);
+          var pushStream = sdk.AudioInputStream.createPushStream();
+          recognizer.recognizeOnceAsync(result => {
+            //
+          });
+        })
       })
     })
     setImmediate(cb)

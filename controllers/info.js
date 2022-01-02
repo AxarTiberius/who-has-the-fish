@@ -23,7 +23,8 @@ module.exports = function container (get, set) {
           "fallbacks": [
           ]
         },
-        version
+        version: version,
+        phrases: require('../data/phrases.json')
       })
     })
 }
