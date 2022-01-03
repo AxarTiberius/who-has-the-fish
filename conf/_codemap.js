@@ -15,7 +15,7 @@ module.exports = {
   },
 
   // Microsoft Azure stuff
-  'azure_key': 'c6053025afc948b79013321570e8ada4',
-  'azure_location': 'westus',
-  'azure_endpoint': 'https://westus.api.cognitive.microsoft.com/sts/v1.0/issuetoken'
+  'azure_key': process.env.WHTF_AZURE_KEY,
+  'azure_location': process.env.WHTF_AZURE_LOCATION,
+  'azure_endpoint': process.env.WHTF_AZURE_ENDPOINT
 }
